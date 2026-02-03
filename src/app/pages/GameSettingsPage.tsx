@@ -7,7 +7,7 @@ interface KeybindingsPageProps {
 }
 
 
-export function GameSettingsPage() {
+export function GameSettingsPage({ onNavigate }: KeybindingsPageProps) {
   const lightAmplificationBinds = [
     {
       action: "Light Amplification Toggle",
@@ -416,15 +416,6 @@ export function GameSettingsPage() {
           rows={flightReadyBinds}
         />
       </PDFSection>
-     <PDFCallout type="info">
-          {' '}
-          <button
-            onClick={() => onNavigate?.('common-knowledge')}
-            className="text-indigo-400 hover:text-indigo-300 font-semibold underline cursor-pointer"
-          >
-            Back to where you left off
-          </button>{' '}
-        </PDFCallout>
     </>
   );
 }

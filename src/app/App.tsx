@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { FileDown, Menu, X, ChevronRight } from "lucide-react";
+import { FileDown, Menu, X, ChevronRight, ChevronUp, ChevronsUp } from "lucide-react";
 import { Button } from "@/app/components/ui/button";
 import { PDFPage } from "@/app/components/PDFPage";
 import { IntroductionPage } from "@/app/pages/IntroductionPage";
@@ -17,12 +17,15 @@ import { MCFlightPage } from "@/app/pages/MCFlightPage";
 export default function App() {
   const [activeSection, setActiveSection] = useState("introduction");
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [atSectionTop, setAtSectionTop] = useState(false);
+  const [enableDoubleChevron, setEnableDoubleChevron] = useState(false);
+  const [lastButtonClickAt, setLastButtonClickAt] = useState<number | null>(null);
 
   const sections = [
   { id: "introduction", title: "Introduction", page: 1 },
   { id: "keybindings", title: "Keybindings", page: 2 },
   { id: "sub-targeting", title: "Sub Targeting", page: 3 },
-  { id: "common-knowledge", title: "Common Knowledge", page: 4 },
+  { id: "common-knowledge", title: "Gunnery With Luna", page: 4 },
   { id: "pilot-crew", title: "Pilot-Crew Pairs", page: 5 },
   { id: "capacitor", title: "Capacitor Management", page: 6 },
   { id: "special-ships", title: "Ships", page: 7 },
@@ -41,33 +44,88 @@ export default function App() {
         const element = document.getElementById(sections[i].id);
         if (element && element.offsetTop <= scrollPosition) {
           setActiveSection(sections[i].id);
+
+          // Determine if we're at the visual "top" of this section (considering offset used elsewhere)
+          const offset = 80;
+          const desiredTop = element.offsetTop - offset;
+          const atTop = Math.abs(window.scrollY - desiredTop) <= 8;
+          setAtSectionTop(atTop);
+
           break;
         }
       }
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
+  }, [lastButtonClickAt]);
+
+  // Reset double-chev when user manually interacts (wheel/touch/keydown/pointer)
+  useEffect(() => {
+    const resetDouble = (e?: Event) => {
+      // If the interaction started on the scroll button itself, do not reset.
+      try {
+        const target = (e as Event & { target?: Element })?.target as Element | undefined;
+        if (target && target.closest && target.closest('.scroll-to-section-btn')) {
+          return;
+        }
+        // For keydown, if the active element is the scroll button, ignore
+        if (e && (e as KeyboardEvent).type === 'keydown') {
+          const active = document.activeElement as Element | null;
+          if (active && active.closest && active.closest('.scroll-to-section-btn')) return;
+        }
+      } catch (err) {
+        // ignore errors and fall through to reset
+      }
+
+      setEnableDoubleChevron(false);
+      setLastButtonClickAt(null);
+    };
+
+    window.addEventListener('wheel', resetDouble, { passive: true });
+    window.addEventListener('touchstart', resetDouble, { passive: true });
+    window.addEventListener('pointerdown', resetDouble, { passive: true });
+    window.addEventListener('keydown', resetDouble);
+
+    return () => {
+      window.removeEventListener('wheel', resetDouble);
+      window.removeEventListener('touchstart', resetDouble);
+      window.removeEventListener('pointerdown', resetDouble);
+      window.removeEventListener('keydown', resetDouble);
+    };
   }, []);
 
-  const onNavigate = (id: string) => {
-  const el = document.getElementById(id)
-  if (!el) return
+  const onNavigate = (id: string, source: 'button' | 'toc' = 'toc') => {
+    const el = document.getElementById(id);
+    if (!el) return;
 
-  el.scrollIntoView({
-    behavior: "smooth",
-    block: "start",
-  })
+    // If navigation came from the scroll button, enable double chevron behavior.
+    if (source === 'button') {
+      setEnableDoubleChevron(true);
+      setLastButtonClickAt(Date.now());
+    } else {
+      setEnableDoubleChevron(false);
+      setLastButtonClickAt(null);
+    }
 
-  setActiveSection(id)
-}
+    // Scroll using the same offset logic as scrollToSection so "top" detection matches.
+    const offset = 80;
+    const elementPosition = el.offsetTop - offset;
+    window.scrollTo({ top: elementPosition, behavior: 'smooth' });
+
+    setActiveSection(id);
+  };
 
   const scrollToSection = (sectionId: string) => {
+    // Treat this as TOC-style navigation: disable double chevron
+    setEnableDoubleChevron(false);
+    setLastButtonClickAt(null);
+
     const element = document.getElementById(sectionId);
     if (element) {
       const offset = 80;
       const elementPosition = element.offsetTop - offset;
-      window.scrollTo({ top: elementPosition, behavior: "smooth" });
+      window.scrollTo({ top: elementPosition, behavior: 'smooth' });
       setSidebarOpen(false);
     }
   };
@@ -281,6 +339,30 @@ export default function App() {
 
       </main>
 
+      {/* Floating button: return to top of current section */}
+      <div className="print:hidden">
+        <Button
+          onClick={() => {
+            const idx = sections.findIndex((s) => s.id === activeSection);
+            if (atSectionTop && enableDoubleChevron && idx > 0) {
+              // Double chevron action: go to previous section (keep double-chev enabled so user can chain)
+              onNavigate(sections[idx - 1].id, 'button');
+            } else {
+              // Single chevron action: scroll to top of current section and enable double chevron
+              onNavigate(activeSection, 'button');
+            }
+          }}
+          aria-label={atSectionTop && enableDoubleChevron ? 'Go to previous section' : 'Scroll to section top'}
+          className="scroll-to-section-btn"
+        >
+          {atSectionTop && enableDoubleChevron ? (
+            <ChevronsUp className="w-5 h-5" />
+          ) : (
+            <ChevronUp className="w-5 h-5" />
+          )}
+        </Button>
+      </div>
+
       {/* Print Styles */}
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
@@ -371,6 +453,35 @@ export default function App() {
             width: 100%;
             min-height: auto;
             padding: 2rem 1.5rem;
+          }
+        }
+
+        /* Scroll button styling */
+        .scroll-to-section-btn {
+          position: fixed;
+          bottom: 1.5rem;
+          right: 1.5rem;
+          width: 56px;
+          height: 56px;
+          border-radius: 9999px;
+          background-color: oklch(0.511 0.262 276.966);
+          color: white;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          z-index: 50;
+          box-shadow: 0 8px 24px rgba(0,0,0,0.45);
+          border: 0;
+        }
+
+        .scroll-to-section-btn:hover {
+          filter: brightness(0.95);
+        }
+
+        @media screen and (min-width: 1024px) {
+          .scroll-to-section-btn {
+            right: auto;
+            left: calc(50% + 155mm + 12px);
           }
         }
       `}</style>

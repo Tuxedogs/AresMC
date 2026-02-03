@@ -1,0 +1,22 @@
+{
+    "customFileOrder.rules": {
+        "pages": {
+            "order": [
+                "IntroductionPage.tsx",
+                "KeybindingsPage.tsx",
+                "CommonKnowledgePage.tsx",
+                "SubTargetingPage.tsx",
+                "ExtraKnowledgePage.tsx",
+                "CapacitorPage.tsx",
+                "PilotCrewPage.tsx",
+                "GameSettingsPage.tsx",
+                "HowToUsePage.tsx",
+                "MCFlightPage.tsx",
+                "SpecialShipsPage.tsx"
+            ],
+            "type": "manual"
+        }
+    },
+    "search.useIgnoreFiles": true,
+    "search.useParentIgnoreFiles": true
+}
