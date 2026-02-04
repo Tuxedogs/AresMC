@@ -23,27 +23,30 @@ export default function App() {
 
   const sections = [
   { id: "introduction", title: "Introduction", page: 1 },
-  { id: "keybindings", title: "Keybindings", page: 2 },
-  { id: "sub-targeting", title: "Sub Targeting", page: 3 },
-  { id: "common-knowledge", title: "Gunnery With Luna", page: 4 },
-  { id: "pilot-crew", title: "Pilot-Crew Pairs", page: 5 },
-  { id: "capacitor", title: "Capacitor Management", page: 6 },
-  { id: "special-ships", title: "Ships", page: 7 },
-  { id: "how-to-use", title: "How to Use This", page: 8 },
-  { id: "extra-knowledge", title: "Extra Knowledge", page: 9 },
-  { id: "game-settings", title: "Addl. Keybindings", page: 10 },
-  { id: "mc-flight", title: "MC Flight", page: 11 },
+  { id: "mc-flight", title: "MC Flight", page: 2 },
+  { id: "keybindings", title: "Keybindings", page: 3, children: [
+    { id: "game-settings", title: "Addl. Keybindings", page: 11 }
+  ] },
+  { id: "sub-targeting", title: "Sub Targeting", page: 4 },
+  { id: "common-knowledge", title: "Gunnery With Luna", page: 5 },
+  { id: "pilot-crew", title: "Pilot-Crew Pairs", page: 6 },
+  { id: "capacitor", title: "Capacitor Management", page: 7 },
+  { id: "special-ships", title: "Ships", page: 8 },
+  { id: "how-to-use", title: "How to Use This", page: 9 },
+  { id: "extra-knowledge", title: "Extra Knowledge", page: 10 },
 ];
+
+  const flatSections = sections.flatMap((s) => [s, ...(s.children ?? [])]);
 
 
 
   useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY + 200;
-      for (let i = sections.length - 1; i >= 0; i--) {
-        const element = document.getElementById(sections[i].id);
+      for (let i = flatSections.length - 1; i >= 0; i--) {
+        const element = document.getElementById(flatSections[i].id);
         if (element && element.offsetTop <= scrollPosition) {
-          setActiveSection(sections[i].id);
+          setActiveSection(flatSections[i].id);
 
           // Determine if we're at the visual "top" of this section (considering offset used elsewhere)
           const offset = 80;
@@ -179,23 +182,40 @@ export default function App() {
           </div>
           <nav className="space-y-1">
             {sections.map((section) => (
-              <button
-                key={section.id}
-                onClick={() => scrollToSection(section.id)}
-                className={`
-                  w-full text-left px-3 py-2.5 rounded-lg text-sm transition-all flex items-center justify-between group
-                  ${
-                    activeSection === section.id
-                      ? 'bg-indigo-600 text-white font-medium'
-                      : 'text-gray-300 hover:bg-gray-800 hover:text-white'
-                  }
-                `}
-              >
-                <span>{section.title}</span>
-                <span className="text-xs text-gray-500 group-hover:text-gray-400 font-mono">
-                  {section.page}
-                </span>
-              </button>
+              <div key={section.id}>
+                <button
+                  onClick={() => scrollToSection(section.id)}
+                  className={`
+                    w-full text-left px-3 py-2.5 rounded-lg text-sm transition-all flex items-center justify-between group
+                    ${
+                      activeSection === section.id
+                        ? 'bg-indigo-600 text-white font-medium'
+                        : 'text-gray-300 hover:bg-gray-800 hover:text-white'
+                    }
+                  `}
+                >
+                  <span>{section.title}</span>
+                  <span className="text-xs text-gray-500 group-hover:text-gray-400 font-mono">
+                    {section.page}
+                  </span>
+                </button>
+
+                {section.children?.map((child) => (
+                  <button
+                    key={child.id}
+                    onClick={() => scrollToSection(child.id)}
+                    className={`
+                      w-full text-left px-6 py-2 rounded-lg text-sm transition-all flex items-center justify-between group text-gray-300 hover:bg-gray-800 hover:text-white
+                      ${activeSection === child.id ? 'bg-indigo-600 text-white font-medium' : ''}
+                    `}
+                  >
+                    <span className="text-sm">{child.title}</span>
+                    <span className="text-xs text-gray-500 group-hover:text-gray-400 font-mono">
+                      {child.page}
+                    </span>
+                  </button>
+                ))}
+              </div>
             ))}
           </nav>
         </div>
@@ -250,20 +270,36 @@ export default function App() {
 
               <div className="space-y-2">
                 {sections.map((section) => (
-                  <div
-                    key={section.id}
-                    className="flex items-center justify-between py-3 border-b border-gray-800/50 group hover:border-indigo-500/30 transition-colors cursor-pointer"
-                    onClick={() => scrollToSection(section.id)}
-                  >
-                    <div className="flex items-center gap-3">
-                      <ChevronRight className="w-4 h-4 text-gray-600 group-hover:text-indigo-400 transition-colors" />
-                      <span className="text-gray-300 group-hover:text-white transition-colors">
-                        {section.title}
+                  <div key={section.id}>
+                    <div
+                      className="flex items-center justify-between py-3 border-b border-gray-800/50 group hover:border-indigo-500/30 transition-colors cursor-pointer"
+                      onClick={() => scrollToSection(section.id)}
+                    >
+                      <div className="flex items-center gap-3">
+                        <ChevronRight className="w-4 h-4 text-gray-600 group-hover:text-indigo-400 transition-colors" />
+                        <span className="text-gray-300 group-hover:text-white transition-colors">
+                          {section.title}
+                        </span>
+                      </div>
+                      <span className="text-sm font-mono text-gray-500 group-hover:text-indigo-400 transition-colors">
+                        {section.page}
                       </span>
                     </div>
-                    <span className="text-sm font-mono text-gray-500 group-hover:text-indigo-400 transition-colors">
-                      {section.page}
-                    </span>
+
+                    {section.children?.map((child) => (
+                      <div
+                        key={child.id}
+                        className="flex items-center justify-between py-2 pl-8 border-b border-gray-800/20 group hover:border-indigo-500/30 transition-colors cursor-pointer"
+                        onClick={() => scrollToSection(child.id)}
+                      >
+                        <div className="flex items-center gap-3">
+                          <span className="text-gray-400 text-sm">{child.title}</span>
+                        </div>
+                        <span className="text-sm font-mono text-gray-500 group-hover:text-indigo-400 transition-colors">
+                          {child.page}
+                        </span>
+                      </div>
+                    ))}
                   </div>
                 ))}
               </div>
@@ -277,63 +313,63 @@ export default function App() {
   </PDFPage>
 </div>
 
-<div id="keybindings">
-  <PDFPage pageNumber={2}>
-    <KeybindingsPage onNavigate={onNavigate} />
-  </PDFPage>
-</div>
+          <div id="mc-flight">
+            <PDFPage pageNumber={2}>
+              <MCFlightPage />
+            </PDFPage>
+          </div>
+
+          <div id="keybindings">
+            <PDFPage pageNumber={3}>
+              <KeybindingsPage onNavigate={onNavigate} />
+            </PDFPage>
+          </div>
 
 <div id="sub-targeting">
-  <PDFPage pageNumber={3}>
+  <PDFPage pageNumber={4}>
     <SubTargetingPage />
   </PDFPage>
 </div>
 
 <div id="common-knowledge">
-  <PDFPage pageNumber={4}>
+  <PDFPage pageNumber={5}>
     <CommonKnowledgePage onNavigate={onNavigate} />
   </PDFPage>
 </div>
 
 <div id="pilot-crew">
-  <PDFPage pageNumber={5}>
+  <PDFPage pageNumber={6}>
     <PilotCrewPage />
   </PDFPage>
 </div>
 
 <div id="capacitor">
-  <PDFPage pageNumber={6}>
+  <PDFPage pageNumber={7}>
     <CapacitorPage />
   </PDFPage>
 </div>
 
 <div id="special-ships">
-  <PDFPage pageNumber={7}>
+  <PDFPage pageNumber={8}>
     <SpecialShipsPage />
   </PDFPage>
 </div>
 
 <div id="how-to-use">
-  <PDFPage pageNumber={8}>
+  <PDFPage pageNumber={9}>
     <HowToUsePage />
   </PDFPage>
 </div>
 
 <div id="extra-knowledge">
-  <PDFPage pageNumber={9}>
+  <PDFPage pageNumber={10}>
     <ExtraKnowledgePage />
   </PDFPage>
 </div>
 
 <div id="game-settings">
-  <PDFPage pageNumber={10}>
-    <GameSettingsPage />
-  </PDFPage>
-</div>
-
-<div id="mc-flight">
   <PDFPage pageNumber={11}>
-    <MCFlightPage />
+    <GameSettingsPage />
   </PDFPage>
 </div>
 
