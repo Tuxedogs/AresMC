@@ -124,8 +124,15 @@
     @apply border-border outline-ring/50;
   }
 
+  /* Ensure the document root uses the site's dark background so
+     gaps between PDF pages don't reveal the browser default (white). */
+  html {
+    background-color: #0a0a0a;
+  }
+
   body {
-    @apply bg-background text-foreground;
+    background-color: #0a0a0a;
+    @apply text-foreground;
   }
 
   /**

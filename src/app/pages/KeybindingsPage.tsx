@@ -1,12 +1,10 @@
+import { useNavigate } from 'react-router-dom';
 import { PDFSection } from '@/app/components/PDFSection';
 import { PDFCallout } from '@/app/components/PDFCallout';
 import { PDFTable } from '@/app/components/PDFTable';
 
-interface KeybindingsPageProps {
-  onNavigate?: (pageId: string) => void;
-}
-
-export function KeybindingsPage({ onNavigate }: KeybindingsPageProps) {
+export function KeybindingsPage() {
+  const navigate = useNavigate();
   const seatsBinds = [
     {
       action: "Enter Remote Turret 1",
@@ -292,7 +290,7 @@ export function KeybindingsPage({ onNavigate }: KeybindingsPageProps) {
       <PDFCallout type="info" title="Further Reading">
           The{' '}
           <button
-            onClick={() => onNavigate?.('game-settings')}
+            onClick={() => navigate('/game-settings')}
             className="text-indigo-400 hover:text-indigo-300 font-semibold underline cursor-pointer"
           >
             Addl. Keybindings

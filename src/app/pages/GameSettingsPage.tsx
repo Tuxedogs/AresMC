@@ -2,12 +2,7 @@ import { PDFSection } from '@/app/components/PDFSection';
 import { PDFCallout } from '@/app/components/PDFCallout';
 import { PDFTable } from '@/app/components/PDFTable';
 
-interface KeybindingsPageProps {
-  onNavigate?: (pageId: string) => void;
-}
-
-
-export function GameSettingsPage({ onNavigate }: KeybindingsPageProps) {
+export function GameSettingsPage() {
   const lightAmplificationBinds = [
     {
       action: "Light Amplification Toggle",

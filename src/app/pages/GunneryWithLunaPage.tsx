@@ -1,9 +1,10 @@
-import { PDFSection } from '../components/PDFSection';
-import { PDFCallout } from '../components/PDFCallout';
+import { PDFSection } from '@/app/components/PDFSection';
+import { PDFCallout } from '@/app/components/PDFCallout';
 
-export function CommonKnowledgePage() {
+export function GunneryWithLunaPage() {
   return (
     <>
+      {/* --- Moved Common Knowledge content (now at top) --- */}
       <PDFSection 
         title="Gunnery with Luna" 
         subtitle="Understanding delta, weapon velocities, and effective engagement ranges"
