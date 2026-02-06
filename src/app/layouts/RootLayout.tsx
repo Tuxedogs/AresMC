@@ -54,14 +54,6 @@ export function RootLayout() {
             </h1>
           </div>
 
-          <Button
-            onClick={handlePrint}
-            size="sm"
-            className="gap-2 bg-indigo-600 hover:bg-indigo-500 text-white border-0"
-          >
-            <FileDown className="w-4 h-4" />
-            <span className="hidden sm:inline">Export PDF</span>
-          </Button>
         </div>
       </nav>
 
@@ -99,9 +91,9 @@ export function RootLayout() {
           {/* Cover Page - Only on introduction chapter */}
           {isIntroPage && (
             <PDFPage pageNumber={undefined} showHeader={false} showFooter={false}>
-              <div className="flex flex-col items-center justify-center h-full text-center">
+              <div className="flex flex-col items-center justify-center h-full text-center pt-16 pb-40">
                 <div className="space-y-6">
-                  <div className="inline-block px-4 py-1.5 bg-indigo-600/20 border border-indigo-500/30 rounded-full">
+                  <div className="inline-block px-4 py-1.5 bg-indigo-600/20 border border-indigo-500/30 rounded-full mt-12">
                     <span className="text-xs font-semibold text-indigo-400 uppercase tracking-wider">
                       Version 1.0 • February 2026
                     </span>
@@ -122,88 +114,44 @@ export function RootLayout() {
                     <p>Moonbreakers Training Division</p>
                   </div>
                 </div>
+                {/* Extra vertical space at the bottom of the cover */}
+                <div style={{ minHeight: '30vh' }} />
               </div>
             </PDFPage>
           )}
 
-          {/* Table of Contents - Only on introduction chapter */}
-          {isIntroPage && (
-            <PDFPage pageNumber={undefined} showHeader={false}>
-              <div className="space-y-8">
-                <div>
-                  <h2 className="text-4xl font-light text-white mb-3">Contents</h2>
-                  <div className="h-px bg-gradient-to-r from-indigo-500/50 via-indigo-500/20 to-transparent" />
-                </div>
 
-                <div className="space-y-2">
-                  {tocStructure.map((item) => (
-                    <div key={item.id} className="w-full">
-                      <button
-                        onClick={() => navigateToChapter(item.path)}
-                        className="w-full text-left group"
-                      >
-                        <div className="flex items-center justify-between py-3 border-b border-gray-800/50 group hover:border-indigo-500/30 transition-colors">
-                          <div className="flex items-center gap-3">
-                            <ChevronRight className="w-4 h-4 text-gray-600 group-hover:text-indigo-400 transition-colors" />
-                            <span className="text-gray-300 group-hover:text-white transition-colors">
-                              {item.title}
-                            </span>
-                          </div>
-                          <span className="text-sm font-mono text-gray-500 group-hover:text-indigo-400 transition-colors">{/* page */}</span>
-                        </div>
-                      </button>
-
-                      {item.children && (
-                        <div className="pl-6">
-                          {item.children.map((child) => (
-                            <button key={child.id} onClick={() => navigateToChapter(child.path)} className="w-full text-left group">
-                              <div className="flex items-center justify-between py-2 border-b border-gray-800/30 group hover:border-indigo-500/30 transition-colors">
-                                <div className="flex items-center gap-3">
-                                  <ChevronRight className="w-3 h-3 text-gray-600 group-hover:text-indigo-400 transition-colors" />
-                                  <span className="text-gray-300 group-hover:text-white transition-colors">{child.title}</span>
-                                </div>
-                              </div>
-                            </button>
-                          ))}
-                        </div>
-                      )}
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </PDFPage>
-          )}
 
           {/* Current Chapter Content */}
           <PDFPage pageNumber={currentChapter.pageNumber}>
             <Outlet />
+            <div className="flex justify-between mt-12 mb-4">
+              {previousChapter && (
+                <button
+                  onClick={() => navigateToChapter(previousChapter.path)}
+                  className="bg-gray-800/60 text-gray-200 hover:bg-gray-700 hover:text-white font-medium text-sm px-6 py-3 rounded-lg shadow transition-all border border-gray-700"
+                  aria-label={`Go to previous chapter: ${previousChapter.title}`}
+                >
+                  ← {previousChapter.title}
+                </button>
+              )}
+              {nextChapter && (
+                <button
+                  onClick={() => navigateToChapter(nextChapter.path)}
+                  className="bg-gray-800/60 text-gray-200 hover:bg-gray-700 hover:text-white font-medium text-sm px-6 py-3 rounded-lg shadow transition-all border border-gray-700"
+                  aria-label={`Go to next chapter: ${nextChapter.title}`}
+                >
+                  {nextChapter.title} →
+                </button>
+              )}
+            </div>
           </PDFPage>
         </div>
       </main>
 
       {/* Navigation Buttons - Hidden on print */}
       <div className="print:hidden">
-        {previousChapter && (
-          <Button
-            onClick={() => navigateToChapter(previousChapter.path)}
-            aria-label="Go to previous chapter"
-            className="fixed bottom-24 right-6 rounded-full w-14 h-14 p-0 flex items-center justify-center bg-indigo-600 hover:bg-indigo-500 text-white border-0"
-            title={`Previous: ${previousChapter.title}`}
-          >
-            <ChevronLeft className="w-5 h-5" />
-          </Button>
-        )}
-
-        {nextChapter && (
-          <Button
-            onClick={() => navigateToChapter(nextChapter.path)}
-            aria-label="Go to next chapter"
-            className="fixed bottom-6 right-6 rounded-full w-14 h-14 p-0 flex items-center justify-center bg-indigo-600 hover:bg-indigo-500 text-white border-0"
-            title={`Next: ${nextChapter.title}`}
-          >
-            <ChevronRight className="w-5 h-5" />
-          </Button>
-        )}
+        {/* Floating button for section top only (implementation assumed elsewhere) */}
       </div>
 
       {/* Print Styles */}

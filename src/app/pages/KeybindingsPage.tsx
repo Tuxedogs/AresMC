@@ -1,7 +1,10 @@
+
 import { useNavigate } from 'react-router-dom';
-import { PDFSection } from '@/app/components/PDFSection';
-import { PDFCallout } from '@/app/components/PDFCallout';
-import { PDFTable } from '@/app/components/PDFTable';
+import { PDFSection } from '../components/PDFSection';
+import { PDFCallout } from '../components/PDFCallout';
+import { PDFTable } from '../components/PDFTable';
+
+
 
 export function KeybindingsPage() {
   const navigate = useNavigate();

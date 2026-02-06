@@ -1,5 +1,5 @@
-import { PDFSection } from '@/app/components/PDFSection';
-import { PDFCallout } from '@/app/components/PDFCallout';
+import { PDFSection } from '../components/PDFSection';
+import { PDFCallout } from '../components/PDFCallout';
 
 export function PilotCrewPage() {
   return (

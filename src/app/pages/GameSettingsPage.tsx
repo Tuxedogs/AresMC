@@ -1,6 +1,6 @@
-import { PDFSection } from '@/app/components/PDFSection';
-import { PDFCallout } from '@/app/components/PDFCallout';
-import { PDFTable } from '@/app/components/PDFTable';
+import { PDFSection } from '../components/PDFSection';
+import { PDFCallout } from '../components/PDFCallout';
+import { PDFTable } from '../components/PDFTable';
 
 export function GameSettingsPage() {
   const lightAmplificationBinds = [
@@ -396,7 +396,7 @@ export function GameSettingsPage() {
         />
       </PDFSection>
 
-      <PDFSection level={2}>
+      <PDFSection title="Flight Ready Settings" level={2}>
         <PDFCallout type="important" title="Flight Ready Bindings">
           You can optionally, although I <strong>highly recommend</strong> binding all of these to 
           'Flight Ready' or your own reset key in case of abnormal behavior.

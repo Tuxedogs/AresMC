@@ -1,18 +1,19 @@
 import { useState, useEffect } from "react";
 import { FileDown, Menu, X, ChevronRight, ChevronUp, ChevronsUp } from "lucide-react";
-import { Button } from "@/app/components/ui/button";
-import { PDFPage } from "@/app/components/PDFPage";
-import { IntroductionPage } from "@/app/pages/IntroductionPage";
-import { KeybindingsPage } from "@/app/pages/KeybindingsPage";
-import { CommonKnowledgePage } from "@/app/pages/CommonKnowledgePage";
-import { PilotCrewPage } from "@/app/pages/PilotCrewPage";
-import { CapacitorPage } from "@/app/pages/CapacitorPage";
-import { SpecialShipsPage } from "@/app/pages/SpecialShipsPage";
-import { HowToUsePage } from "@/app/pages/HowToUsePage";
-import { ExtraKnowledgePage } from "@/app/pages/ExtraKnowledgePage";
-import { GameSettingsPage } from "@/app/pages/GameSettingsPage";
-import { SubTargetingPage } from "@/app/pages/SubTargetingPage";
-import { MCFlightPage } from "@/app/pages/MCFlightPage";
+import { Button } from "./components/ui/button";
+import { PDFPage } from "./components/PDFPage";
+import { IntroductionPage } from "./pages/IntroductionPage";
+import { MCFlightPage } from "./pages/MCFlightPage";
+import { KeybindingsPage } from "./pages/KeybindingsPage";
+import { SubTargetingPage } from "./pages/SubTargetingPage";
+import { GunneryWithLunaPage } from "./pages/GunneryWithLunaPage";
+import { PilotCrewPage } from "./pages/PilotCrewPage";
+import { CapacitorPage } from "./pages/CapacitorPage";
+import { SpecialShipsPage } from "./pages/SpecialShipsPage";
+import { HowToUsePage } from "./pages/HowToUsePage";
+import { ExtraKnowledgePage } from "./pages/ExtraKnowledgePage";
+import { GameSettingsPage } from "./pages/GameSettingsPage";
+import { CommunicationsPage } from "./pages/CommunicationsPage";
 
 export default function App() {
   const [activeSection, setActiveSection] = useState("introduction");
@@ -23,17 +24,17 @@ export default function App() {
 
   const sections = [
   { id: "introduction", title: "Introduction", page: 1 },
-  { id: "mc-flight", title: "MC Flight", page: 2 },
+  { id: "mc-flight", title: "Patch Info", page: 2 },
   { id: "keybindings", title: "Keybindings", page: 3, children: [
-    { id: "game-settings", title: "Addl. Keybindings", page: 11 }
+    { id: "game-settings", title: "Additional Keybinds", page: 11 }
   ] },
-  { id: "sub-targeting", title: "Sub Targeting", page: 4 },
-  { id: "common-knowledge", title: "Gunnery With Luna", page: 5 },
+  { id: "sub-targeting", title: "Sub-Targeting", page: 4 },
+  { id: "common-knowledge", title: "Gunnery with Luna", page: 5 },
   { id: "pilot-crew", title: "Pilot-Crew Pairs", page: 6 },
   { id: "capacitor", title: "Capacitor Management", page: 7 },
   { id: "special-ships", title: "Ships", page: 8 },
-  { id: "how-to-use", title: "How to Use This", page: 9 },
-  { id: "extra-knowledge", title: "Extra Knowledge", page: 10 },
+  { id: "how-to-use", title: "How to use this Knowledge", page: 9 },
+  { id: "extra-knowledge", title: "Addl. Resources", page: 10 },
 ];
 
   const flatSections = sections.flatMap((s) => [s, ...(s.children ?? [])]);
@@ -309,19 +310,19 @@ export default function App() {
           {/* Content Pages */}
           <div id="introduction">
   <PDFPage pageNumber={1}>
-    <IntroductionPage onNavigate={onNavigate} />
+       <IntroductionPage />
   </PDFPage>
 </div>
 
           <div id="mc-flight">
             <PDFPage pageNumber={2}>
-              <MCFlightPage />
+                <MCFlightPage />
             </PDFPage>
           </div>
 
           <div id="keybindings">
             <PDFPage pageNumber={3}>
-              <KeybindingsPage onNavigate={onNavigate} />
+                <KeybindingsPage />
             </PDFPage>
           </div>
 
@@ -333,43 +334,43 @@ export default function App() {
 
 <div id="common-knowledge">
   <PDFPage pageNumber={5}>
-    <CommonKnowledgePage onNavigate={onNavigate} />
+  <GunneryWithLunaPage />
   </PDFPage>
 </div>
 
 <div id="pilot-crew">
   <PDFPage pageNumber={6}>
-    <PilotCrewPage />
+  <PilotCrewPage />
   </PDFPage>
 </div>
 
 <div id="capacitor">
   <PDFPage pageNumber={7}>
-    <CapacitorPage />
+  <CapacitorPage />
   </PDFPage>
 </div>
 
 <div id="special-ships">
   <PDFPage pageNumber={8}>
-    <SpecialShipsPage />
+  <SpecialShipsPage />
   </PDFPage>
 </div>
 
 <div id="how-to-use">
   <PDFPage pageNumber={9}>
-    <HowToUsePage />
+  <HowToUsePage />
   </PDFPage>
 </div>
 
 <div id="extra-knowledge">
   <PDFPage pageNumber={10}>
-    <ExtraKnowledgePage />
+  <ExtraKnowledgePage />
   </PDFPage>
 </div>
 
 <div id="game-settings">
   <PDFPage pageNumber={11}>
-    <GameSettingsPage />
+  <GameSettingsPage />
   </PDFPage>
 </div>
 
