@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { Menu, X, ChevronLeft, ChevronRight, FileDown } from 'lucide-react';
 import { Button } from '@/app/components/ui/button';
@@ -10,6 +10,8 @@ import chapters from '@/app/content/chapters';
 export function RootLayout() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const location = useLocation();
+  const touchStart = useRef<{ x: number; y: number } | null>(null);
+  const touchEnd = useRef<{ x: number; y: number } | null>(null);
 
   useEffect(() => {
     // Ensure navigation lands at the top of the new page.
@@ -40,6 +42,40 @@ export function RootLayout() {
 
   // Check if we're on the intro page (showing cover/toc)
   const isIntroPage = currentChapter.id === 'introduction';
+
+  const handleTouchStart = (event: React.TouchEvent) => {
+    if (sidebarOpen) return;
+    const touch = event.touches[0];
+    touchStart.current = { x: touch.clientX, y: touch.clientY };
+    touchEnd.current = { x: touch.clientX, y: touch.clientY };
+  };
+
+  const handleTouchMove = (event: React.TouchEvent) => {
+    if (!touchStart.current) return;
+    const touch = event.touches[0];
+    touchEnd.current = { x: touch.clientX, y: touch.clientY };
+  };
+
+  const handleTouchEnd = () => {
+    if (!touchStart.current || !touchEnd.current) return;
+
+    const deltaX = touchEnd.current.x - touchStart.current.x;
+    const deltaY = touchEnd.current.y - touchStart.current.y;
+    const absX = Math.abs(deltaX);
+    const absY = Math.abs(deltaY);
+
+    touchStart.current = null;
+    touchEnd.current = null;
+
+    // Require a clear horizontal swipe to avoid fighting vertical scroll.
+    if (absX < 60 || absX < absY) return;
+
+    if (deltaX > 0 && previousChapter) {
+      navigateToChapter(previousChapter.path);
+    } else if (deltaX < 0 && nextChapter) {
+      navigateToChapter(nextChapter.path);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-[#0a0a0a]">
@@ -92,7 +128,12 @@ export function RootLayout() {
 
       {/* Main Content */}
       <main className="lg:ml-64 pt-14 print:pt-0 print:ml-0">
-        <div className="pdf-container">
+        <div
+          className="pdf-container"
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+        >
           {/* Cover Page - Only on introduction chapter */}
           {isIntroPage && (
             <PDFPage pageNumber={undefined} showHeader={false} showFooter={false}>
