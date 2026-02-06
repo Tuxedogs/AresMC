@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { Menu, X, ChevronLeft, ChevronRight, FileDown } from 'lucide-react';
 import { Button } from '@/app/components/ui/button';
@@ -10,6 +10,11 @@ import chapters from '@/app/content/chapters';
 export function RootLayout() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const location = useLocation();
+
+  useEffect(() => {
+    // Ensure navigation lands at the top of the new page.
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+  }, [location.pathname]);
 
   // Find current chapter based on route
   const currentChapter = chapterRoutes.find((ch) => {
