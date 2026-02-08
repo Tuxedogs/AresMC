@@ -4,10 +4,11 @@ import { Info, AlertTriangle, AlertCircle, LifeBuoy } from 'lucide-react';
 interface PDFCalloutProps {
   type: 'info' | 'warning' | 'important' | 'assist' | 'caution';
   title?: string;
+  titleClassName?: string;
   children: ReactNode;
 }
 
-export function PDFCallout({ type, title, children }: PDFCalloutProps) {
+export function PDFCallout({ type, title, titleClassName, children }: PDFCalloutProps) {
   const styles = {
     info: {
       border: 'border-blue-500/30',
@@ -48,7 +49,7 @@ export function PDFCallout({ type, title, children }: PDFCalloutProps) {
       <div className="flex-shrink-0 mt-0.5">{style.icon}</div>
       <div className="flex-1 text-sm">
         {title && (
-          <div className={`${style.titleColor} font-semibold mb-2`}>
+          <div className={`${titleClassName ?? style.titleColor} font-semibold mb-2`}>
             {title}
           </div>
         )}

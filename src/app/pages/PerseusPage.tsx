@@ -17,6 +17,40 @@ export function PerseusPage() {
           whilst still being engaged by other enemy targets at the same time.
         </p>
 
+        <div className="my-8 border border-slate-800 bg-slate-950/70 rounded-lg p-6">
+          <div className="grid gap-6 md:grid-cols-3 text-sm md:divide-x md:divide-slate-800/70">
+            <div className="md:pr-6">
+              <div className="text-sm uppercase tracking-wider text-slate-200 font-semibold mb-3">No Capital Present</div>
+              <div className="border border-amber-500/70 rounded-md px-4 py-3 text-white font-semibold">
+                Field Perseus (1+)
+              </div>
+              <div className="mt-3 text-slate-400 text-xs">Standard Doctrine or FC requests</div>
+            </div>
+
+            <div className="md:px-6">
+              <div className="text-sm uppercase tracking-wider text-slate-200 font-semibold mb-3">1x Idris (Any Polaris)</div>
+              <div className="border border-amber-500/70 rounded-md px-4 py-3 text-white font-semibold">
+                Remain in Perseus
+              </div>
+              <div className="mt-3 text-slate-400 text-xs">Field Multiple Perseus</div>
+              <div className="mt-1 text-slate-400 text-xs">Ignore Polaris Count</div>
+            </div>
+
+            <div className="md:pl-6">
+              <div className="text-sm uppercase tracking-wider text-red-300 font-semibold mb-3">2+ Idris</div>
+              <div className="relative border border-red-500 rounded-md px-4 py-4 text-white font-extrabold">
+                DO NOT FIELD PERSEUS
+                <div className="absolute inset-0 -z-10 rounded-md bg-red-500/10 blur-xl" />
+              </div>
+              <div className="mt-3 text-red-300 text-xs">Deploy Polaris</div>
+              <div className="mt-1 text-red-300 text-xs">Long-Range Sniping Ops</div>
+            </div>
+          </div>
+          <p className="text-xs text-gray-500 mt-4">
+            Capital escalation and response doctrine.
+          </p>
+        </div>
+
         <div className="bg-gray-900/50 border border-indigo-900/30 rounded-lg p-5 my-6">
           <h4 className="text-indigo-400 font-semibold mb-3 text-base">Gun Positions:</h4>
 

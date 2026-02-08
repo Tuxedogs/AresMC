@@ -14,7 +14,7 @@ export const chapters: ChapterMeta[] = [
     path: '/',
     pageNumber: 1,
   },
-  { id: 'mc-flight', title: '4.6 details', path: '/mc-flight', pageNumber: 2 },
+  { id: 'mc-flight', title: 'Doctrine', path: '/mc-flight', pageNumber: 2 },
   {
     id: 'special-ships',
     title: 'Ships',
