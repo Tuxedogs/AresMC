@@ -13,24 +13,15 @@ export function MCFlightPage() {
         subtitle="Advanced multi-crew flight tactics and coordination"
         level={1}
       >
-        <p>
-          Multi-crew flight operations require coordination, communication, and a deep understanding of your role 
-          within the larger tactical picture. This section covers some tactics we plan to implement and refine as a crew.
-        </p>
-
-        <PDFCallout type="info" title="Coming Soon">
-          Actual Fight footage.
-        </PDFCallout>
       </PDFSection>
 
-      <PDFSection title="Role of Multi-Crew Ships" level={2}>
+      <PDFSection title="" level={2}>
         <div className="doctrine-card bg-gradient-to-br from-slate-950/70 via-gray-950/60 to-indigo-900/25 border border-indigo-800/30 rounded-lg p-6">
           <h3 className="text-xl font-semibold text-gray-100">GENERAL DOCTRINE</h3>
 
           <div className="mt-6 grid gap-x-8 md:grid-cols-2">
             <div className="space-y-6">
               <div>
-                <h4 className="text-base font-semibold text-gray-100 uppercase tracking-wider">ROLES</h4>
                 <ul className="mt-3 space-y-5 text-sm text-gray-200">
                   <li>
                     <div className="text-amber-400 font-semibold mb-2">Fighters</div>
@@ -79,7 +70,7 @@ export function MCFlightPage() {
               <div>
                 <h4 className="text-base font-semibold text-gray-100 uppercase tracking-wider">COMMITMENT</h4>
                 <ul className="mt-3 space-y-1.5 text-sm text-gray-200 list-none pl-6">
-                  <li>Engage deliberately, force the fight</li>
+                  <li><span className="text-emerald-300 font-semibold">Engage</span> deliberately, force the fight</li>
                   <li>MC with engineers must attempt to attract as much attention</li>
                   <li>Do not chase light targets</li>
                   <li>Do not stop fighting until complete destruction</li>
@@ -145,6 +136,7 @@ export function MCFlightPage() {
         <h3 className="mt-6">5. Damage Absorption and Distraction</h3>
         <p>Multi-crew ships can take hits that fighters cannot afford to. Their presence forces the enemy to commit resources, draw fire, or reposition, creating openings for friendly fighters to exploit.</p>
       </PDFSection>
+
       <PDFSection title="Planned Topics" level={2}>
         <div className="bg-gray-900/50 border border-indigo-900/30 rounded-lg p-5 my-6">
       
