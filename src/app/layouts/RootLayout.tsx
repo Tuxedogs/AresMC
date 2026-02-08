@@ -171,7 +171,7 @@ export function RootLayout() {
           {/* Current Chapter Content */}
           <PDFPage pageNumber={currentChapter.pageNumber}>
             <Outlet />
-            <div className="flex justify-between mt-12 mb-4">
+            <div className={`flex mt-12 mb-4 ${previousChapter ? 'justify-between' : 'justify-end'}`}>
               {previousChapter && (
                 <button
                   onClick={() => navigateToChapter(previousChapter.path)}

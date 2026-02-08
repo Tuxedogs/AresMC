@@ -21,9 +21,9 @@ export const chapters: ChapterMeta[] = [
     path: '/special-ships',
     pageNumber: 3,
     children: [
-      { id: 'perseus', title: 'Perseus', path: '/special-ships#perseus' },
-      { id: 'polaris', title: 'Polaris', path: '/special-ships#polaris' },
-      { id: 'idris', title: 'Idris', path: '/special-ships#idris' },
+      { id: 'perseus', title: 'Perseus', path: '/perseus' },
+      { id: 'polaris', title: 'Polaris', path: '/polaris' },
+      { id: 'idris', title: 'Idris', path: '/idris' },
     ],
   },
   { id: 'sub-targeting', title: 'Sub-Targeting', path: '/sub-targeting', pageNumber: 4 },

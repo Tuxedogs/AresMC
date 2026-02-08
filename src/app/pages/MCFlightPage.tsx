@@ -2,6 +2,10 @@ import { PDFSection } from '@/app/components/PDFSection';
 import { PDFCallout } from '@/app/components/PDFCallout';
 
 export function MCFlightPage() {
+  const SectionDivider = () => (
+    <div className="mt-3 mb-6 h-px bg-gradient-to-r from-indigo-500/50 via-indigo-500/20 to-transparent"></div>
+  );
+
   return (
     <>
       <PDFSection 
@@ -118,11 +122,13 @@ export function MCFlightPage() {
             <PDFCallout type="caution" title="Intended Targets - Engage Accordingly">
               Do not get distracted chasing light fighters or small targets that your fighters can handle. Size 8 cannon rounds flying past friendlies is recipe for disaster. Following at a distance and focusing on potential incoming threats should be your priority.
             </PDFCallout>
+        <SectionDivider />
         <h3 className="text-lg font-semibold mb-4 mt-6">2. Sustained Damage Application</h3>
         <p>Unlike fighters, multi-crew platforms are built for long engagements. <span className="text-blue-400 font-semibold">Engineers</span> for crew, larger capacitors, ammunition reserves, and turret coverage allow them to maintain continuous damage output without disengaging.</p>
         <PDFCallout type="info" title="Engineers Matter">
            <p> Engineering is incredibly strong. The problem is that it's only really fun once the ship has been disabled, armor and hull stripped. However, an engineer can keep a ship combat effective as many times as needed, kill conditions being a critical power plant dice roll, or an extremely high alpha (Torpedo, Idris Railgun).   </p>
         </PDFCallout>
+        <SectionDivider />
         <h3 className="text-lg font-semibold mb-4 mt-6">3.Target Finalization (Hard Kills)</h3>
         <p>With engineering in play, disabling a ship is no longer sufficient. Multi-crew ships are responsible for hard-killing disabled targets so fighters can remain focused on active threats. Leaving cleanup to fighters is a waste of time and ammunition.</p>
         <PDFCallout type="warning" title="Vampire Ships">
@@ -131,9 +137,11 @@ export function MCFlightPage() {
           <br />
           Securing all kills is highly suggested.
         </PDFCallout>
+        <SectionDivider />
         <h3 className="text-lg font-semibold mb-4 mt-6">4. Fighter Support</h3>
         <p>Multi-crew ships do not replace fighters; they enable them. By absorbing pressure, eliminating high-value targets, and cleaning up disabled hulls, multi-crew platforms allow fighters to operate aggressively without being bogged down by tasks they are poorly suited for.
         </p>
+        <SectionDivider />
         <h3 className="mt-6">5. Damage Absorption and Distraction</h3>
         <p>Multi-crew ships can take hits that fighters cannot afford to. Their presence forces the enemy to commit resources, draw fire, or reposition, creating openings for friendly fighters to exploit.</p>
       </PDFSection>
