@@ -28,6 +28,20 @@ export function RootLayout() {
   const previousChapter = currentIndex > 0 ? chapterRoutes[currentIndex - 1] : null;
   const nextChapter = currentIndex < chapterRoutes.length - 1 ? chapterRoutes[currentIndex + 1] : null;
 
+  const previousPath =
+    currentChapter.id === 'perseus' && previousChapter?.id === 'special-ships'
+      ? '/mc-flight'
+      : previousChapter?.path;
+
+  const previousLabel =
+    currentChapter.id === 'perseus' && previousChapter?.id === 'special-ships'
+      ? 'Doctrine'
+      : previousChapter?.title;
+  const nextLabel =
+    currentChapter.id === 'mc-flight' && nextChapter?.id === 'special-ships'
+      ? 'Ships: Perseus'
+      : nextChapter?.title;
+
   const navigate = useNavigate();
 
   const navigateToChapter = (path: string) => {
@@ -174,11 +188,11 @@ export function RootLayout() {
             <div className={`flex mt-12 mb-4 ${previousChapter ? 'justify-between' : 'justify-end'}`}>
               {previousChapter && (
                 <button
-                  onClick={() => navigateToChapter(previousChapter.path)}
+                  onClick={() => previousPath && navigateToChapter(previousPath)}
                   className="bg-gray-800/60 text-gray-200 hover:bg-gray-700 hover:text-white font-medium text-sm px-6 py-3 rounded-lg shadow transition-all border border-gray-700"
                   aria-label={`Go to previous chapter: ${previousChapter.title}`}
                 >
-                  ← {previousChapter.title}
+                  ← {previousLabel}
                 </button>
               )}
               {nextChapter && (
@@ -187,7 +201,7 @@ export function RootLayout() {
                   className="bg-gray-800/60 text-gray-200 hover:bg-gray-700 hover:text-white font-medium text-sm px-6 py-3 rounded-lg shadow transition-all border border-gray-700"
                   aria-label={`Go to next chapter: ${nextChapter.title}`}
                 >
-                  {nextChapter.title} →
+                  {nextLabel} →
                 </button>
               )}
             </div>

@@ -10,16 +10,16 @@ export function IntroductionPage() {
         level={1}
       >
         <p>
-          First, I cannot thank <span className="font-semibold text-indigo-400">CosticLuna</span> enough 
-          for letting me use, edit and expand upon her original documentation, as well as picking her brain. 
-          This laid the foundation for Moonbreakers and MC training in general for the org. 
-          A lot has changed since then, and I hope to keep this document updated as the game evolves.
+          First, I cannot thank <span className="font-semibold text-indigo-400">CosticLuna</span> enough for letting me
+          use, edit and expand upon her original documentation, as well as picking her brain. Your work provided a much
+          needed kick-start to getting this entire project rolling, becoming a critical part of Moonbreakers and
+          multi-crew training. A lot has changed since then, and I hope to keep this document updated as the game
+          evolves.
         </p>
 
         <p>
           This site is a working reference for how we approach multi-crew combat. It’s organized to move from general
-          principles into specific roles and situations, with diagrams and short callouts used where a hard decision or
-          escalation rule matters more than long explanations.
+          principles into specific roles and situations, with diagrams and short callouts.
         </p>
 
         <p>
@@ -29,7 +29,9 @@ export function IntroductionPage() {
         </p>
 
         <p>
-          This is a living document and gets updated as mechanics change and new lessons get learned.
+          Each capital-class and large multi-crew ship has unique characteristics that require specific strategies and
+          crew coordination. Ship pages are added as platforms become viable options in PU combat. Ships not included
+          here are generally not fielded by us and don't require documentation.
         </p>
 
         <PDFCallout type="info" title="Who is this for?">

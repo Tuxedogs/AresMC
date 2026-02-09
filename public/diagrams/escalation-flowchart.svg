@@ -1,0 +1,51 @@
+<svg width="1200" height="700" viewBox="0 0 1200 700" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Capital escalation and response doctrine">
+  <rect x="0" y="0" width="1200" height="700" fill="#0b0f14" />
+
+  <defs>
+    <style>
+      .text { fill: #ffffff; font-family: "Segoe UI", Arial, sans-serif; font-size: 18px; font-weight: 600; }
+      .small { fill: #b6c1cc; font-size: 15px; font-weight: 500; }
+      .header { fill: #ffffff; font-size: 16px; font-weight: 700; letter-spacing: 1.2px; }
+      .box { fill: none; stroke: #f59e0b; stroke-width: 2; }
+      .box-red { fill: none; stroke: #ef4444; stroke-width: 4; }
+      .text-red { fill: #ffffff; font-size: 22px; font-weight: 800; }
+      .sub-red { fill: #ef4444; font-size: 15px; font-weight: 600; }
+      .divider { stroke: #2a3440; stroke-width: 1; }
+    </style>
+    <filter id="redGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="12" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Column Headers -->
+  <text x="200" y="70" text-anchor="middle" class="header">NO CAPITAL PRESENT</text>
+  <text x="600" y="70" text-anchor="middle" class="header">1x IDRIS (ANY POLARIS)</text>
+  <text x="1000" y="70" text-anchor="middle" class="header">2+ IDRIS (CRITICAL)</text>
+  <line x1="80" y1="88" x2="320" y2="88" class="divider" />
+  <line x1="480" y1="88" x2="720" y2="88" class="divider" />
+  <line x1="880" y1="88" x2="1120" y2="88" class="divider" />
+
+  <!-- Column 1 -->
+  <rect x="80" y="120" width="240" height="64" class="box" />
+  <text x="200" y="158" text-anchor="middle" class="text">Field Perseus (1+)</text>
+  <text x="200" y="210" text-anchor="middle" class="small">Fighters Screen</text>
+  <text x="200" y="232" text-anchor="middle" class="small">MC Secures Kills</text>
+
+  <!-- Column 2 -->
+  <rect x="480" y="120" width="240" height="64" class="box" />
+  <text x="600" y="158" text-anchor="middle" class="text">Remain in Perseus</text>
+  <text x="600" y="210" text-anchor="middle" class="small">Field Multiple Perseus</text>
+  <text x="600" y="232" text-anchor="middle" class="small">Ignore Polaris Count</text>
+
+  <!-- Column 3 (Critical) -->
+  <rect x="870" y="108" width="260" height="140" fill="#ef4444" opacity="0.08" filter="url(#redGlow)" />
+  <rect x="880" y="110" width="240" height="140" class="box-red" />
+  <text x="1000" y="160" text-anchor="middle" class="text-red">DO NOT FIELD</text>
+  <text x="1000" y="194" text-anchor="middle" class="text-red">PERSEUS</text>
+  <text x="1000" y="240" text-anchor="middle" class="sub-red">Deploy Polaris</text>
+  <text x="1000" y="262" text-anchor="middle" class="sub-red">Long-Range Sniping Ops</text>
+</svg>

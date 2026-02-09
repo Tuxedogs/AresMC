@@ -1,4 +1,4 @@
-import { createBrowserRouter } from 'react-router-dom';
+import { Navigate, createBrowserRouter } from 'react-router-dom';
 import { RootLayout } from '@/app/layouts/RootLayout';
 import { IntroductionPage } from '@/app/pages/IntroductionPage';
 import { MCFlightPage } from '@/app/pages/MCFlightPage';
@@ -19,7 +19,7 @@ import { CommunicationsPage } from '@/app/pages/CommunicationsPage';
 // Linear chapter list (used for prev/next navigation)
 export const chapterRoutes = [
   { id: 'introduction', title: 'Introduction', path: '/', pageNumber: 1, component: IntroductionPage },
-  { id: 'mc-flight', title: 'Flight', path: '/mc-flight', pageNumber: 2, component: MCFlightPage },
+  { id: 'mc-flight', title: 'Doctrine', path: '/mc-flight', pageNumber: 2, component: MCFlightPage },
   { id: 'special-ships', title: 'Ships', path: '/special-ships', pageNumber: 3, component: SpecialShipsPage },
   { id: 'perseus', title: 'Perseus', path: '/perseus', pageNumber: 4, component: PerseusPage },
   { id: 'polaris', title: 'Polaris', path: '/polaris', pageNumber: 5, component: PolarisPage },
@@ -42,7 +42,7 @@ export const tocStructure = [
     title: 'Introduction',
     path: '/',
     children: [
-      { id: 'mc-flight', title: 'Flight', path: '/mc-flight' },
+      { id: 'mc-flight', title: 'Doctrine', path: '/mc-flight' },
       {
         id: 'ships',
         title: 'Ships',
@@ -80,7 +80,8 @@ export const router = createBrowserRouter([
     children: chapterRoutes.map((chapter) => ({
       path: chapter.path === '/' ? undefined : chapter.path,
       index: chapter.path === '/',
-      element: <chapter.component />,
+      element:
+        chapter.id === 'special-ships' ? <Navigate to="/perseus" replace /> : <chapter.component />,
     })),
   },
 ]);
