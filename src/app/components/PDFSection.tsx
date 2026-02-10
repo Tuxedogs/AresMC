@@ -6,6 +6,7 @@ interface PDFSectionProps {
   level?: 1 | 2 | 3;
   children: ReactNode;
   id?: string;
+  showHeader?: boolean;
 }
 
 export function PDFSection({ title, subtitle, level = 1, children, id }: PDFSectionProps) {

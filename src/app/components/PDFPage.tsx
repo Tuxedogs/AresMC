@@ -21,18 +21,8 @@ export function PDFPage({ children, pageNumber, showHeader = true, showFooter = 
       <div className="relative pdf-content">
         {/* Header */}
         {showHeader && (
-          <header className="pdf-header border-b border-gray-800/50 pb-4 mb-8">
-            <div className="flex items-center justify-between">
-              <div>
-                <h1 className="text-sm font-medium text-gray-400 uppercase tracking-wider">
-                  
-                </h1>
-              </div>
-              <div className="h-px flex-1 mx-6 bg-gradient-to-r from-gray-800 via-indigo-900/30 to-transparent" />
-              <div className="text-xs text-gray-500">
-                v1.0 • 2026
-              </div>
-            </div>
+          <header className="pdf-header">
+            {/* Version and separator removed; border and spacing removed */}
           </header>
         )}
 

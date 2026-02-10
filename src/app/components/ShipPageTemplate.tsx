@@ -45,7 +45,7 @@ export function ShipPageTemplate({
   };
 
   return (
-    <PDFSection title={title} subtitle={subtitle} level={1}>
+    <div style={{ marginTop: 0, paddingTop: 0 }}>
       {banner}
       {overview && (
         <>
@@ -59,6 +59,6 @@ export function ShipPageTemplate({
       {renderSection('Turret Posturing', turretPosturing)}
       {renderSection('Loadout', loadout)}
       {renderSection('General Rules', generalRules)}
-    </PDFSection>
+    </div>
   );
 }

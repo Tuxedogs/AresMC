@@ -1,5 +1,5 @@
-import { PDFSection } from '@/app/components/PDFSection';
-import { PDFCallout } from '@/app/components/PDFCallout';
+import { PDFSection } from '../components/PDFSection';
+import { PDFCallout } from '../components/PDFCallout';
 
 export function MCFlightPage() {
   const SectionDivider = () => (
@@ -13,6 +13,7 @@ export function MCFlightPage() {
         subtitle="Multi-crew flight tactics and coordination"
         level={1}
       >
+        {/* Add content here if needed */}
       </PDFSection>
 
       <PDFSection title="" level={2}>

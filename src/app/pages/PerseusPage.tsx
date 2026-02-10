@@ -23,59 +23,100 @@ export function PerseusPage() {
   return (
     <>
       <ShipPageTemplate
-        title="Perseus"
-        subtitle="Multi-Crew Success"
+        // Removed top separators and version text
         banner={
-          // 21:9 hero keeps the header cinematic without stretching the image.
-          <div className="aspect-[21/9] w-full overflow-hidden rounded-lg border border-slate-800">
-            <img
-              className="h-full w-full object-cover"
-              src="/Images/Perseus/2percypatrol.png"
-              alt="Perseus patrol formation"
-            />
+          // HeroBanner with overlayed title, subtitle, and overview text
+          <div
+            className="perseus-hero-banner w-full overflow-hidden rounded-lg border border-slate-800 relative"
+            style={{
+              height: 'clamp(320px,48vh,520px)',
+              backgroundImage: "url('/Images/Perseus/percyobserve.png')",
+              backgroundSize: 'cover',
+              backgroundPosition: 'left 90%',
+              backgroundRepeat: 'no-repeat',
+            }}
+            aria-label="Perseus hero image"
+          >
+            <div className="absolute bottom-0 left-0 w-full h-[36%] pointer-events-none" style={{
+              background: 'linear-gradient(to top, var(--tw-gradient-to, #0a0a0a) 80%, rgba(10,10,10,0) 100%)',
+            }} aria-hidden="true" />
+            {/* Title, subtitle, and overview bottom-left */}
+            <div
+              className="perseus-hero-content absolute left-0 bottom-0 z-10 p-6 sm:p-8 text-left"
+              style={{
+                color: 'var(--tw-text-opacity, #e5e7eb)',
+                textShadow: '0 2px 8px rgba(0,0,0,0.32)',
+                width: '48%', // 20% shorter than 60%
+                maxWidth: '100vw',
+              }}
+            >
+              <div className="mb-2">
+                <h1
+                  className="text-3xl font-bold text-white mb-2"
+                  style={{
+                    textShadow: '0 4px 16px rgba(0,0,0,0.48), 0 2px 8px rgba(0,0,0,0.32)',
+                  }}
+                >
+                  Perseus
+                </h1>
+                <h2
+                  className="text-lg font-medium text-indigo-200 mb-3"
+                  style={{
+                    textShadow: '0 3px 12px rgba(0,0,0,0.36), 0 1px 4px rgba(0,0,0,0.24)',
+                  }}
+                >
+                  This isn’t a free win.
+                </h2>
+              </div>
+              <div className="bg-slate-900/50 border border-slate-800 rounded-lg p-4 backdrop-blur-sm">
+                <p className="text-sm text-gray-300 leading-tight">
+                  While not intended to engage capital ships. With refined piloting and coordination, it can. That capability is refined, not assumed.
+                </p>
+              </div>
+            </div>
+            <style>{`
+              .perseus-hero-content {
+                /* Desktop: width set inline to 60% */
+              }
+              @media (max-width: 900px) {
+                .perseus-hero-content {
+                  width: 90vw !important;
+                  max-width: 100vw;
+                }
+              }
+              @media (max-width: 640px) {
+                .perseus-hero-content {
+                  left: 50%;
+                  bottom: 0.5rem;
+                  transform: translateX(-50%);
+                  width: 95vw !important;
+                  max-width: 100vw;
+                  padding: 0.75rem;
+                  text-align: center;
+                }
+              }
+            `}</style>
           </div>
         }
-        overview={
-          <>
-            <p className="text-sm text-gray-300">
-              The Perseus delivers sustained, high-caliber fire against targets fighters are not intended to engage in
-              prolonged combat.
-            </p>
-            <ul className="mt-3 list-disc space-y-1 pl-5 text-sm text-gray-300">
-              <li>
-                We field it against a large portion of our engagement profiles, including capitals, while deliberately
-                tanking enemy fighters as our own fighters peel pressure off.
-              </li>
-              <li>
-                The survivability of your crew and the ability to engage and dispatch enemies while outnumbered, as
-                well as finishing disabled threats from the fighter group is your primary role. Not just winning
-                against the enemy Perseus.
-              </li>
-              <li>
-                At two or more Idris on grid, the Perseus is no longer viable and is replaced by a Polaris operating at
-                stand-off range.
-              </li>
-            </ul>
-          </>
-        }
+        // No overview prop; hero now contains overview
         criticalNotes={
-          <div className="my-4 grid gap-4 md:grid-cols-3">
+          <div className="my-4 grid gap-4 md:grid-cols-3 text-center">
             {/* Consistent decision cards keep risk calls scannable. */}
-            <div className="rounded-lg border border-slate-800 bg-slate-950/70 p-4">
+              <div className="rounded-lg border border-slate-800 bg-slate-950/70 p-4 text-center">
               <div className="text-xs uppercase tracking-wider text-slate-300">No Capital Present</div>
-              <div className="mt-3 rounded-md border border-amber-500/70 px-3 py-2 text-sm font-semibold text-white">
-                Field Perseus (1+)
+              <div className="mt-3 rounded-md border border-green-500/70 px-3 py-2 text-sm font-semibold text-white">
+                Field Perseus
               </div>
               <div className="mt-2 text-xs text-slate-400">Standard doctrine / FC discretion</div>
             </div>
-            <div className="rounded-lg border border-slate-800 bg-slate-950/70 p-4">
+              <div className="rounded-lg border border-slate-800 bg-slate-950/70 p-4 text-center">
               <div className="text-xs uppercase tracking-wider text-slate-300">1x Idris (Any Polaris)</div>
-              <div className="mt-3 rounded-md border border-amber-500/70 px-3 py-2 text-sm font-semibold text-white">
-                Remain in Perseus
+              <div className="mt-3 rounded-md border border-green-500/70 px-3 py-2 text-sm font-semibold text-white">
+                Field Perseus
               </div>
               <div className="mt-2 text-xs text-slate-400">Ignore Polaris Count</div>
             </div>
-            <div className="rounded-lg border border-red-500/40 bg-slate-950/70 p-4">
+              <div className="rounded-lg border border-red-500/40 bg-slate-950/70 p-4 text-center">
               <div className="text-xs uppercase tracking-wider text-red-300">2+ Idris</div>
               <div className="mt-3 rounded-md border border-red-500 px-3 py-2 text-sm font-extrabold text-white">
                 DO NOT FIELD PERSEUS
