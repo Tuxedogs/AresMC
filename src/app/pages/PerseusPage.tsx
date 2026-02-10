@@ -190,7 +190,7 @@ export function PerseusPage() {
         }
         crew={
           <>
-            <div className="grid gap-4 md:grid-cols-2">
+            <div className="my-6 grid gap-4 md:grid-cols-3">
               {/* Parallel cards keep crew roles consistent and easy to compare. */}
               <div className="bg-gray-900/50 border border-indigo-900/30 rounded-lg p-5">
                 <h5 className="text-amber-400 font-semibold mb-2">Gun 1 - Top Forward Main Turret</h5>
@@ -200,25 +200,18 @@ export function PerseusPage() {
                   makes life a lot better for its operator.
                 </p>
               </div>
+              <div className="bg-gray-900/50 border border-indigo-900/30 rounded-lg p-5 text-left">
+                <h5 className="text-emerald-400 font-semibold mb-2">Engineer — Survivability Multiplier</h5>
+                <p className="text-sm text-gray-300">
+                  An engineer extends the Perseus’ effective time on station. Early in a fight, they can flex into torpedoes or remote turrets. Once internal damage sets in, they keep power, shields, and radar alive under pressure. Crews without an engineer just quit as soon as systems start failing.
+                </p>
+              </div>
               <div className="bg-gray-900/50 border border-indigo-900/30 rounded-lg p-5">
                 <h5 className="text-amber-400 font-semibold mb-2">Gun 2 - Lower Rear Main Turret</h5>
                 <p className="text-sm text-gray-300">
-                  This turret has a more limited firing arc and operates counter to natural pilot movement. Because of
-                  its constrained coverage, it is best assigned to crew members who prefer having additional gameplay
-                  options such as EVA, engineering, or field rearming.
+                  This turret has a more limited firing arc and operates counter to natural pilot movement. It is best assigned to crew members who prefer having additional gameplay options such as EVA, engineering, or field rearming.
                 </p>
               </div>
-            </div>
-            <div className="mt-4 space-y-2 text-sm text-gray-300">
-              <p>
-                Maximizing the lower rear main turret requires an experienced crew member, and time spent in this seat
-                on the Perseus pays off significantly.
-              </p>
-              <p>
-                A single Perseus with both turrets manned delivers far more effective targeted fire and has unmatched
-                survivability in many scenarios versus two Perseus with only one turret crewed. The key is having
-                crewmates comfortable with flexing into multi-role tasks.
-              </p>
             </div>
           </>
         }
@@ -226,28 +219,28 @@ export function PerseusPage() {
           <>
             <div className="my-6 grid gap-4 md:grid-cols-3">
               {/* Intentional placeholders keep the grid balanced while assets are in progress. */}
-              <div className="rounded-lg border border-slate-800 bg-slate-950/60 p-4">
-                <div className="text-xs uppercase tracking-wider text-slate-400">Pilot cockpit</div>
-                <div className="mt-3 text-sm text-slate-500">Coming soon</div>
-              </div>
-              <div className="rounded-lg border border-slate-800 bg-slate-950/60 p-4">
-                <div className="text-xs uppercase tracking-wider text-slate-400">Top turret</div>
-                <div className="mt-3 text-sm text-slate-500">Coming soon</div>
-              </div>
-              <div className="rounded-lg border border-slate-800 bg-slate-950/60 p-4">
-                <div className="text-xs uppercase tracking-wider text-slate-400">Lower turret</div>
-                <div className="mt-3 text-sm text-slate-500">Coming soon</div>
-              </div>
+            <div className="rounded-lg border border-slate-800 bg-slate-950/60 p-4">
+              <div className="text-xs uppercase tracking-wider text-slate-400">Pilot cockpit</div>
+              <div className="mt-3 text-sm text-slate-500">Coming soon</div>
             </div>
-            <p>
-              Turrets turn rates are extremely sluggish, pilots should move in predictable patterns and communicate
-              intent so gunners can prepare a solution.
-            </p>
-            <p>
-              This gives a general idea of the significant challenges the lower turret faces when engaging targets,
-              pilots and crew must be aware of this. Unless dedicated engineer is on board, be prepared to sacrifice
-              this position and flex into other roles.
-            </p>
+            <div className="rounded-lg border border-slate-800 bg-slate-950/60 p-4">
+              <div className="text-xs uppercase tracking-wider text-slate-400">Top turret</div>
+              <div className="mt-3 text-sm text-slate-500">Coming soon</div>
+            </div>
+            <div className="rounded-lg border border-slate-800 bg-slate-950/60 p-4">
+              <div className="text-xs uppercase tracking-wider text-slate-400">Lower turret</div>
+              <div className="mt-3 text-sm text-slate-500">Coming soon</div>
+            </div>
+          </div>
+          <p>
+            Turrets turn rates are extremely sluggish, pilots should move in predictable patterns and communicate
+            intent so gunners can prepare a solution.
+          </p>
+          <p>
+            This gives a general idea of the significant challenges the lower turret faces when engaging targets,
+            pilots and crew must be aware of this. Unless dedicated engineer is on board, be prepared to sacrifice
+            this position and flex into other roles.
+          </p>
           </>
         }
         loadout={
