@@ -255,7 +255,6 @@ export default function App() {
 
                 <div className="pt-12 space-y-2 text-sm text-gray-500">
                   <p>ARES Multi-Crew Operations</p>
-                  <p>Moonbreakers Training Division</p>
                 </div>
               </div>
             </div>

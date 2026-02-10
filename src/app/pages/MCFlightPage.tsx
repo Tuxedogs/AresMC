@@ -1,5 +1,6 @@
 import { PDFSection } from '../components/PDFSection';
 import { PDFCallout } from '../components/PDFCallout';
+import { Collapsible, CollapsibleTrigger, CollapsibleContent } from '../components/ui/collapsible';
 
 export function MCFlightPage() {
   const SectionDivider = () => (
@@ -99,30 +100,57 @@ export function MCFlightPage() {
           <strong>Secure all kills with Hard Death.</strong>
         </PDFCallout>
         <SectionDivider />
-        <h3 className="text-lg font-semibold mb-4 mt-6">Designated Targets</h3>
-        <p>
-          Multi-crew ships engage targets fighters cannot efficiently kill due to ammo limits, durability, or subsystem
-          depth. Heavy fighters, gunships, and capital threats are MC responsibility.
-        </p>
-        <p className="text-base font-semibold text-gray-200">DO NOT chase light fighters.</p>
-        <p>
-          Large-caliber fire near friendlies is a liability. Maintain distance and monitor escalation threats. Fighters
-          should not sustain engagements against anything larger than a Hornet or F8.
-        </p>
+        <Collapsible>
+          <CollapsibleTrigger className="w-full flex justify-between items-center py-2 cursor-pointer group">
+            <h3 className="text-lg font-semibold mb-0 mt-0 group-hover:text-indigo-300 transition-colors">Designated Targets</h3>
+            <span className="ml-2 text-indigo-400">▼</span>
+          </CollapsibleTrigger>
+          <CollapsibleContent>
+            <div className="pl-2 pb-4">
+              <p>
+                Multi-crew ships engage targets fighters cannot efficiently kill due to ammo limits, durability, or subsystem
+                depth. Heavy fighters, gunships, and capital threats are MC responsibility.
+              </p>
+              <p className="text-base font-semibold text-gray-200">DO NOT chase light fighters.</p>
+              <p>
+                Large-caliber fire near friendlies is a liability. Maintain distance and monitor escalation threats. Fighters
+                should not sustain engagements against anything larger than a Hornet or F8.
+              </p>
+            </div>
+          </CollapsibleContent>
+        </Collapsible>
         <SectionDivider />
-        <h3 className="text-lg font-semibold mb-4 mt-6">Engineers Matter</h3>
-        <p>
-          Engineering enables repeated recovery. Hard death requires power plant critical RNG or extreme alpha damage.
-          Multi-crew platforms sustain long engagements. Ships that benefit from <span className="text-blue-400 font-semibold">engineers</span> being on board should be
-          utilized to their full potential. Your fight does not stop when your ship hits 0% hull and armor. Repair your
-          components and keep firing.
-        </p>
+        <Collapsible>
+          <CollapsibleTrigger className="w-full flex justify-between items-center py-2 cursor-pointer group">
+            <h3 className="text-lg font-semibold mb-0 mt-0 group-hover:text-indigo-300 transition-colors">Engineers Matter</h3>
+            <span className="ml-2 text-indigo-400">▼</span>
+          </CollapsibleTrigger>
+          <CollapsibleContent>
+            <div className="pl-2 pb-4">
+              <p>
+                Engineering enables repeated recovery. Hard death requires power plant critical RNG or extreme alpha damage.
+                Multi-crew platforms sustain long engagements. Ships that benefit from <span className="text-blue-400 font-semibold">engineers</span> being on board should be
+                utilized to their full potential. Your fight does not stop when your ship hits 0% hull and armor. Repair your
+                components and keep firing.
+              </p>
+            </div>
+          </CollapsibleContent>
+        </Collapsible>
         <SectionDivider />
-        <h3 className="text-lg font-semibold mb-4 mt-6">Commit</h3>
-        <p>
-          Multi-crew ships absorb pressure and eliminate high-threat targets. An FC may call for your ship to be first
-          in on an enemy fighter ball. Draw aggro and let fighters peel from your ship.
-        </p>
+        <Collapsible>
+          <CollapsibleTrigger className="w-full flex justify-between items-center py-2 cursor-pointer group">
+            <h3 className="text-lg font-semibold mb-0 mt-0 group-hover:text-indigo-300 transition-colors">Commit</h3>
+            <span className="ml-2 text-indigo-400">▼</span>
+          </CollapsibleTrigger>
+          <CollapsibleContent>
+            <div className="pl-2 pb-4">
+              <p>
+                Multi-crew ships absorb pressure and eliminate high-threat targets. An FC may call for your ship to be first
+                in on an enemy fighter ball. Draw aggro and let fighters peel from your ship.
+              </p>
+            </div>
+          </CollapsibleContent>
+        </Collapsible>
       </PDFSection>
 
     </>

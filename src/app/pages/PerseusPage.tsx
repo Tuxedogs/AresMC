@@ -102,25 +102,19 @@ export function PerseusPage() {
         criticalNotes={
           <div className="my-4 grid gap-4 md:grid-cols-3 text-center">
             {/* Consistent decision cards keep risk calls scannable. */}
-              <div className="rounded-lg border border-slate-800 bg-slate-950/70 p-4 text-center">
+            <div className="rounded-lg bg-slate-900/60 p-4 text-center flex flex-col gap-1">
               <div className="text-xs uppercase tracking-wider text-slate-300">No Capital Present</div>
-              <div className="mt-3 rounded-md border border-green-500/70 px-3 py-2 text-sm font-semibold text-white">
-                Field Perseus
-              </div>
+              <div className="mt-3 rounded-md border border-green-500/70 px-3 py-2 text-sm font-semibold text-white bg-green-900/30">Field Perseus</div>
               <div className="mt-2 text-xs text-slate-400">Standard doctrine / FC discretion</div>
             </div>
-              <div className="rounded-lg border border-slate-800 bg-slate-950/70 p-4 text-center">
+            <div className="rounded-lg bg-slate-900/60 p-4 text-center flex flex-col gap-1">
               <div className="text-xs uppercase tracking-wider text-slate-300">1x Idris (Any Polaris)</div>
-              <div className="mt-3 rounded-md border border-green-500/70 px-3 py-2 text-sm font-semibold text-white">
-                Field Perseus
-              </div>
+              <div className="mt-3 rounded-md border border-green-500/70 px-3 py-2 text-sm font-semibold text-white bg-green-900/30">Field Perseus</div>
               <div className="mt-2 text-xs text-slate-400">Ignore Polaris Count</div>
             </div>
-              <div className="rounded-lg border border-red-500/40 bg-slate-950/70 p-4 text-center">
+            <div className="rounded-lg border-l-4 border-red-500 bg-slate-900/60 p-4 text-center flex flex-col gap-1">
               <div className="text-xs uppercase tracking-wider text-red-300">2+ Idris</div>
-              <div className="mt-3 rounded-md border border-red-500 px-3 py-2 text-sm font-extrabold text-white">
-                DO NOT FIELD PERSEUS
-              </div>
+              <div className="mt-3 rounded-md border border-red-500 px-3 py-2 text-sm font-extrabold text-white bg-red-900/30">DO NOT FIELD PERSEUS</div>
               <div className="mt-2 text-xs text-red-300">Deploy Polaris</div>
               <div className="mt-1 text-xs text-red-300">Long-Range Sniping Ops</div>
             </div>
@@ -144,6 +138,8 @@ export function PerseusPage() {
                       loop
                       muted
                       playsInline
+                      controlsList="nodownload nofullscreen noremoteplayback nopictureinpicture"
+                      disablePictureInPicture
                       onPlay={() => setIsPosturePlaying(true)}
                       onPause={() => setIsPosturePlaying(false)}
                     />
@@ -244,8 +240,8 @@ export function PerseusPage() {
           </>
         }
         loadout={
-          <a className="text-indigo-300 underline" href="spviewer.update" target="_blank" rel="noreferrer">
-            spviewer.update
+          <a className="text-indigo-300 underline" href="https://www.spviewer.eu/performance?ship=rsi_perseus&loadout=OvnEeQZR" target="_blank" rel="noreferrer">
+            Spviewer
           </a>
         }
         generalRules={

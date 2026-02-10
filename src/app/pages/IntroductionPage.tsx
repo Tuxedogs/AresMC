@@ -12,9 +12,7 @@ export function IntroductionPage() {
         <p>
           First, I cannot thank <span className="font-semibold text-indigo-400">CosticLuna</span> enough for letting me
           use, edit and expand upon her original documentation, as well as picking her brain. Your work provided a much
-          needed kick-start to getting this entire project rolling, becoming a critical part of Moonbreakers and
-          multi-crew training. A lot has changed since then, and I hope to keep this document updated as the game
-          evolves.
+          needed kick-start to getting this entire project rolling, becoming a critical part of multi-crew training. A lot has changed since then, and I hope to keep this document updated as the game evolves.
         </p>
 
         <p>
