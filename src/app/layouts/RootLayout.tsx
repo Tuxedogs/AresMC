@@ -231,7 +231,10 @@ export function RootLayout() {
           width: 310mm;
           min-height: 297mm;
           margin: 0 auto 2rem;
-          padding: 25mm 20mm;
+          padding-top: 25mm;
+          padding-bottom: 25mm;
+          padding-left: 2rem;
+          padding-right: 2rem;
           box-shadow: 0 0 40px rgba(0, 0, 0, 0.5);
         }
 
@@ -302,7 +305,10 @@ export function RootLayout() {
           .pdf-page {
             width: 100%;
             min-height: auto;
-            padding: 2rem 1.5rem;
+            padding-top: 2rem;
+            padding-bottom: 2rem;
+            padding-left: 1.5rem;
+            padding-right: 1.5rem;
           }
         }
       `}</style>

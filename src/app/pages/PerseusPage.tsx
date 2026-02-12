@@ -1,7 +1,6 @@
 import { PDFCallout } from '../components/PDFCallout';
 import { ShipPageTemplate } from '../components/ShipPageTemplate';
 import { useRef, useState } from 'react';
-import { PilotingSection } from '../components/PilotingSection';
 import { ShipHeroBanner } from '../components/ShipHeroBanner';
 import { CriticalNoteCard } from '../components/CriticalNoteCard';
 import { PDFSection } from '../components/PDFSection';
@@ -32,7 +31,7 @@ export function PerseusPage() {
           src="/Images/Perseus/percyobserve.png"
           alt="RSI Perseus Hero"
           className="w-full h-[340px] object-cover"
-          style={{borderRadius: '16px'}}
+          style={{borderRadius: '16px', paddingLeft: '150px'}}
         />
         <div
           className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent"
@@ -47,13 +46,15 @@ export function PerseusPage() {
             WebkitBackdropFilter: 'blur(8px)',
             borderRadius: '16px',
             boxShadow: '0 8px 32px 0 rgba(0,0,0,0.25)',
+            WebkitMaskImage: 'linear-gradient(to right, black 80%, transparent 100%)',
+            maskImage: 'linear-gradient(to right, black 80%, transparent 100%)',
           }}
         >
           <h1 className="text-5xl font-extrabold text-white mb-4 drop-shadow-lg">RSI – Perseus</h1>
           <h2 className="text-lg font-medium text-indigo-200 mb-4">"Firing"</h2>
-          <div className="bg-black/60 rounded-lg p-4">
+          <div className="bg-black/60 rounded-lg p-4" style={{marginRight: '6px'}}>
             <p className="text-base text-gray-300 leading-tight">
-              While not intended to engage capital ships, we use it against them anyway. A unique combination of speed, firepower, and durability allows it to excel in roles beyond its original design. That capability is refined, not assumed.
+              While not intended to engage capital ships, we use it against them anyway. A unique combination of speed, firepower, and durability allows it to excel in roles beyond its original design.
             </p>
           </div>
         </div>
@@ -101,43 +102,75 @@ export function PerseusPage() {
       </PDFSection>
       <PDFSection title="Piloting" level={2}>
         <div>The RSI Perseus heavy gunship is a sub-capital brawler optimized for harassment and close-range pressure on other large ships. In order to engage corvettes/frigates you will need to leverage it's superior maneuverability, to exploit blind spots, avoiding a fair fight. </div>
-        <PilotingSection
-          videoOrImage={
-            <video
-              ref={postureVideoRef}
-              className="w-full aspect-video object-cover"
-              src="/Images/Perseus/position.mp4"
-              autoPlay
-              loop
-              muted
-              playsInline
-              controlsList="nodownload nofullscreen noremoteplayback nopictureinpicture"
-              disablePictureInPicture
-            />
-          }
-          stepTitle="Relative Tracking"
-          steps={[
-            'Establish and maintain relative tracking on selected target while oriented aft',
-            'Roll to match target maneuvers',
-            'If the Polaris initiates a forward burn, break position, rotate cleanly, apply boost, then re-establish contact.',
-            'Because the initial positioning is controlled and close, the target cannot generate meaningful separation before pressure is resumed.',
-          ]}
-          isPosturePlaying={isPosturePlaying}
-          onPostureToggle={handlePostureToggle}
-        />
+        {/* PilotingSection with video removed for build performance */}
       </PDFSection>
 
-      <PDFSection title="Piloting Execution" level={2}>
-        <div className="rounded-2xl bg-gradient-to-br from-slate-900/80 via-slate-950/90 to-black/90 p-8 shadow-lg mb-12">
-          <h3 className="text-lg font-semibold text-white mb-4">Relative Tracking — <span className="text-green-400 font-semibold">Belly</span></h3>
-          <img src="/Images/Perseus/position.jpg" alt="Relative Tracking Belly" className="rounded-lg mb-6 w-full object-cover" />
-          <p className="text-gray-300 mb-4">Establish alignment beneath the target while oriented aft. Fecessure on a power plant located behind the "X" toward the rear.</p>
-          <ul className="list-disc pl-5 text-sm text-gray-300 space-y-2">
-            <li>Coordinated pitch, <span className="text-green-400">stealth</span>, combined with feathered main preserve.</li>
-            <li>Lateral thrust assists but do not destabilize position that could use a turret independently.</li>
-          </ul>
+
+
+      {/* Relative Tracking — Belly: Formal Doctrine Card with Video */}
+      <div
+        className="w-full rounded-2xl bg-slate-950 shadow-lg mb-12 border border-slate-800/70 overflow-hidden flex flex-col md:flex-row relative"
+        style={{
+          minHeight: '340px',
+          marginLeft: 0,
+          marginBottom: 0,
+          maxWidth: '100vw',
+        }}
+      >
+        {/* Layer 1: Solid left readability panel (40% width) */}
+        <div
+          className="absolute left-0 top-0 h-full pointer-events-none"
+          style={{
+            zIndex: 10,
+            width: '40%',
+            background: 'rgb(3,5,10)', // even darker
+          }}
+        />
+        {/* Layer 2: Feather strip (14%) with smooth left-to-right fade */}
+        <div
+          className="absolute left-[40%] top-0 h-full pointer-events-none"
+          style={{
+            zIndex: 11,
+            width: '14%',
+            background:
+              'linear-gradient(90deg, rgba(3,5,10,1) 0%, rgba(3,5,10,0.72) 40%, rgba(3,5,10,0.32) 80%, rgba(3,5,10,0) 100%)',
+          }}
+        />
+        {/* Layer 3: Full-width cinematic gradient, early stops more transparent */}
+        <div
+          className="absolute left-0 top-0 h-full w-full pointer-events-none"
+          style={{
+            zIndex: 12,
+            background:
+              'linear-gradient(90deg, rgba(3,5,10,0.18) 0%, rgba(3,5,10,0.12) 40%, rgba(3,5,10,0.08) 60%, rgba(3,5,10,0.04) 80%, rgba(3,5,10,0) 100%)',
+          }}
+        />
+        <div className="relative flex-1 md:basis-2/5 flex flex-col justify-center p-4" style={{zIndex:20, minWidth:0}}>
+          <div className="relative z-10">
+            <h2 className="text-2xl font-extrabold text-white mb-2 tracking-tight">Relative Tracking</h2>
+            <p className="text-gray-300 mb-5 font-normal">Establish alignment beneath the target while oriented aft. Fecessure on a power plant located behind the "X" toward the rear.</p>
+            <ul className="list-disc text-base text-gray-200 space-y-1" style={{paddingLeft: '15px'}}>
+              <li>Coordinated pitch, <span className="text-green-400">stealth</span>, combined with feathered main preserve.</li>
+              <li>Lateral thrust assists but do not destabilize position that could use a turret independently.</li>
+              <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur fugit dolor nemo. Eius deserunt laboriosam accusantium placeat? Ipsam doloribus libero assumenda placeat consequatur nihil voluptate ab explicabo similique accusamus! Quas..</li>
+              <li>Lorem ipsum dolor sit amet consectetur adipisicing elit.</li>  
+            </ul>
+          </div>
         </div>
-      </PDFSection>
+        <div className="relative flex-1 md:basis-3/5 flex items-center justify-center" style={{zIndex:5}}>
+          <video
+            ref={postureVideoRef}
+            className="w-full h-full object-cover rounded-none"
+            src="/Images/Perseus/position.mp4"
+            autoPlay
+            loop
+            muted
+            playsInline
+            controlsList="nodownload nofullscreen noremoteplayback nopictureinpicture"
+            disablePictureInPicture
+          />
+        </div>
+      </div>
 
       <div className="mt-16" />
 
