@@ -1,7 +1,7 @@
-import { PDFSection } from '@/app/components/PDFSection';
-import { PDFCallout } from '@/app/components/PDFCallout';
-import { PDFTable } from '@/app/components/PDFTable';
-import { Dialog, DialogClose, DialogContent, DialogTrigger } from '@/app/components/ui/dialog';
+import { PDFSection } from '../components/PDFSection';
+import { PDFCallout } from '../components/PDFCallout';
+import { PDFTable } from '../components/PDFTable';
+import { Dialog, DialogClose, DialogContent, DialogTrigger } from '../components/ui/dialog';
 
 export function SubTargetingPage() {
   const targetCyclingBinds = [
@@ -52,7 +52,7 @@ export function SubTargetingPage() {
         </p>
 
         <PDFTable
-          columns={[
+          columns={[ 
             { header: 'Target Cycling -', key: 'action', width: '30%' },
             { header: 'Keybind', key: 'keybind', width: '20%' },
             { header: 'Description', key: 'description', width: '50%' },
@@ -60,12 +60,13 @@ export function SubTargetingPage() {
           rows={targetCyclingBinds}
         />
 
-        <PDFCallout type="assist">
-          Bind both of these keys, keep in mind you will want them to be useable while aiming.
-        </PDFCallout>
-      </PDFSection>
+        
+          <PDFCallout type="warning">
+            Normally you will want these both bound. 4.6 has a client crash with "backwards" <b>DO NOT BIND Cycle Back</b>.
+          </PDFCallout>
 
-      <PDFSection title="In Practice" level={2}>
+
+        <PDFSection title="In Practice" level={2}>
         <div className="bg-gray-900/50 border border-indigo-900/30 rounded-lg p-5 my-6">
           <h4 className="text-amber-400 font-semibold mb-3 text-base">Subtargeting Instructions</h4>
           <ol className="list-decimal pl-5 text-sm text-gray-300 space-y-2">
@@ -149,8 +150,8 @@ export function SubTargetingPage() {
         <p className="italic text-sm mt-6 text-gray-400">
           *****SUB TARGETING IMAGERY***** - Visual guides to be added
         </p>
+        </PDFSection>
       </PDFSection>
-
     </>
   );
 }

@@ -8,8 +8,8 @@ interface ShipPageTemplateProps {
   overview?: ReactNode;
   criticalNotes?: ReactNode;
   piloting?: ReactNode;
-  crew?: ReactNode;
-  turretPosturing?: ReactNode;
+  crewCard?: ReactNode;
+  postureAndRanges?: ReactNode;
   loadout?: ReactNode;
   generalRules?: ReactNode;
 }
@@ -21,8 +21,8 @@ export function ShipPageTemplate({
   overview,
   criticalNotes,
   piloting,
-  crew,
-  turretPosturing,
+  crewCard,
+  postureAndRanges,
   loadout,
   generalRules,
 }: ShipPageTemplateProps) {
@@ -55,8 +55,8 @@ export function ShipPageTemplate({
       )}
       {renderSection('Critical Notes', criticalNotes)}
       {renderSection('Piloting', piloting)}
-      {renderSection('Crew', crew)}
-      {renderSection('Turret Posturing', turretPosturing)}
+      {renderSection('Crew', crewCard)}
+      {renderSection('Posture and Ranges', postureAndRanges)}
       {renderSection('Loadout', loadout)}
       {renderSection('General Rules', generalRules)}
     </div>

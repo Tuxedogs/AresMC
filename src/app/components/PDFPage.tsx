@@ -9,7 +9,7 @@ interface PDFPageProps {
 
 export function PDFPage({ children, pageNumber, showHeader = true, showFooter = true }: PDFPageProps) {
   return (
-    <div className="pdf-page bg-[#1a1a1a] text-gray-100 relative overflow-hidden">
+    <div className="pdf-page bg-black text-gray-100 relative overflow-hidden">
       {/* Subtle background pattern */}
       <div className="absolute inset-0 opacity-[0.02] pointer-events-none">
         <div className="absolute inset-0" style={{

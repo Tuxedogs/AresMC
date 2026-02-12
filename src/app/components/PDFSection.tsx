@@ -19,8 +19,11 @@ export function PDFSection({ title, subtitle, level = 1, children, id }: PDFSect
   };
 
   return (
-    <section id={id} className="pdf-section mb-10">
+    <section id={id} className="pdf-section mb-10 bg-black">
       <div className="mb-6">
+        {level === 2 && (
+          <div className="mt-3 mb-4 h-px bg-gradient-to-r from-indigo-500/50 via-indigo-500/20 to-transparent" />
+        )}
         <HeadingTag className={headingStyles[level]}>
           {title}
         </HeadingTag>
